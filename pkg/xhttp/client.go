@@ -14,6 +14,7 @@ import (
 	"net/url"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/small-ek/gopay"
@@ -38,24 +39,32 @@ type Client struct {
 	err              error
 }
 
+var lazyClient *Client
+var once sync.Once
+
 // NewClient , default tls.Config{InsecureSkipVerify: true}
 func NewClient() (client *Client) {
-	client = &Client{
-		HttpClient: &http.Client{
-			Timeout: 60 * time.Second,
-			Transport: &http.Transport{
-				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
-				DisableKeepAlives: true,
-				Proxy:             http.ProxyFromEnvironment,
-			},
-		},
-		Transport:     nil,
-		Header:        make(http.Header),
-		bodySize:      10, // default is 10MB
-		requestType:   TypeJSON,
-		unmarshalType: string(TypeJSON),
+	if lazyClient == nil {
+		once.Do(func() {
+			lazyClient = &Client{
+				HttpClient: &http.Client{
+					Timeout: 60 * time.Second,
+					Transport: &http.Transport{
+						TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
+						DisableKeepAlives: true,
+						Proxy:             http.ProxyFromEnvironment,
+					},
+				},
+				Transport:     nil,
+				Header:        make(http.Header),
+				bodySize:      10, // default is 10MB
+				requestType:   TypeJSON,
+				unmarshalType: string(TypeJSON),
+			}
+		})
 	}
-	return client
+
+	return lazyClient
 }
 
 func (c *Client) SetTransport(transport *http.Transport) (client *Client) {
