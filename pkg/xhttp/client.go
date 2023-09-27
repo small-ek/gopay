@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"mime/multipart"
+	"net"
 	"net/http"
 	"net/url"
 	"sort"
@@ -50,9 +51,17 @@ func NewClient() (client *Client) {
 				HttpClient: &http.Client{
 					Timeout: 60 * time.Second,
 					Transport: &http.Transport{
-						TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
-						DisableKeepAlives: true,
-						Proxy:             http.ProxyFromEnvironment,
+						TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
+						MaxIdleConnsPerHost: 50,
+						MaxConnsPerHost:     0,
+						DialContext: (&net.Dialer{
+							Timeout:   30 * time.Second,
+							KeepAlive: 30 * time.Second,
+						}).DialContext,
+						ForceAttemptHTTP2:     true,
+						IdleConnTimeout:       300 * time.Second,
+						TLSHandshakeTimeout:   10 * time.Second,
+						ExpectContinueTimeout: 1 * time.Second,
 					},
 				},
 				Transport:     nil,
