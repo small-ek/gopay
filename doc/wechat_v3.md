@@ -2,13 +2,13 @@
 
 > #### 推荐使用v3接口，官方在v3接口实现未覆盖或gopay未开发的接口，还继续用v2接口，欢迎参与完善v3接口。
 
-- 已实现API列表附录：[API 列表附录](https://github.com/small-ek/gopay/blob/main/doc/wechat_v3.md#%E9%99%84%E5%BD%95)
+- 已实现API列表附录：[API 列表附录](https://github.com/go-pay/gopay/blob/main/doc/wechat_v3.md#%E9%99%84%E5%BD%95)
 
 - 微信官方文档：[商户平台文档](https://pay.weixin.qq.com/wiki/doc/apiv3/wxpay/pages/index.shtml)、[服务商平台文档](https://pay.weixin.qq.com/wiki/doc/apiv3_partner/pages/index.shtml)
 
 - 通用规则：[通用规则](https://pay.weixin.qq.com/docs/merchant/development/interface-rules/introduction.html)
 
-- GoPay微信v2文档：[GoPay微信v2文档](https://github.com/small-ek/gopay/blob/main/doc/wechat_v2.md) （部分接口仅v2版本支持）
+- GoPay微信v2文档：[GoPay微信v2文档](https://github.com/go-pay/gopay/blob/main/doc/wechat_v2.md) （部分接口仅v2版本支持）
 
 ---
 
@@ -20,8 +20,8 @@
 
 ```go
 import (
-    "github.com/small-ek/gopay/pkg/xlog"
-    "github.com/small-ek/gopay/wechat/v3"
+    "github.com/go-pay/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/wechat/v3"
 )
 
 // NewClientV3 初始化微信客户端 v3
@@ -59,7 +59,7 @@ client.DebugSwitch = gopay.DebugOn
 - JSAPI下单 示例
 ```go
 import (
-    "github.com/small-ek/gopay"
+    "github.com/go-pay/gopay"
 )
 
 expire := time.Now().Add(10 * time.Minute).Format(time.RFC3339)
@@ -121,8 +121,8 @@ jsapi, err := client.PaySignOfJSAPI("appid", "prepayid")
 
 ```go
 import (
-    "github.com/small-ek/gopay/wechat/v3"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/wechat/v3"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 wxRsp, err := client.V3TransactionJsapi(bm)
@@ -144,8 +144,8 @@ if err != nil {
 
 ```go
 import (
-    "github.com/small-ek/gopay/wechat/v3"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/wechat/v3"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 notifyReq, err := wechat.V3ParseNotify()
@@ -198,7 +198,7 @@ result, err := notifyReq.DecryptRefundCipherText(apiV3Key)
 
 ```go
 import (
-    "github.com/small-ek/gopay/wechat/v3"
+    "github.com/go-pay/gopay/wechat/v3"
 )
 
 // 获取微信平台证书和序列号信息，推荐使用后者
@@ -356,6 +356,11 @@ wechat.V3DecryptScoreNotifyCipherText()
     * 反馈处理完成：`client.V3ComplaintComplete()`
     * 更新退款审批结果：`client.V3ComplaintUpdateRefundProgress()`
     * 商户上传反馈图片：`client.V3ComplaintUploadImage()`
+* <font color='#07C160' size='4'>商户平台处置通知</font>
+    * 创建商户违规通知回调回调地址：`client.V3ViolationNotifyUrlCreate()`
+    * 查询商户违规通知回调回调地址：`client.V3ViolationNotifyUrlQuery()`
+    * 更新商户违规通知回调回调地址：`client.V3ViolationNotifyUrlUpdate()`
+    * 删除商户违规通知回调回调地址：`client.V3ViolationNotifyUrlDelete()`
 * <font color='#07C160' size='4'>其他能力</font>
     * 图片上传：`client.V3MediaUploadImage()`
     * 视频上传：`client.V3MediaUploadVideo()`

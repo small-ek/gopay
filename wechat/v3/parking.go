@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/small-ek/gopay"
+	"github.com/go-pay/gopay"
 )
 
 // 查询车牌服务开通信息

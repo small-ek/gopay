@@ -4,7 +4,7 @@
 
 > #### 希望有时间的伙伴儿Fork完后，补充并提交Pull Request，一起完善支付宝各个类别下的接口到相应的go文件中
 
-- 已实现API列表附录：[API 列表附录](https://github.com/small-ek/gopay/blob/main/doc/alipay.md#%E9%99%84%E5%BD%95)
+- 已实现API列表附录：[API 列表附录](https://github.com/go-pay/gopay/blob/main/doc/alipay.md#%E9%99%84%E5%BD%95)
 
 - 支付宝官方文档：[官方文档](https://openhome.alipay.com/docCenter/docCenter.htm)
 
@@ -20,8 +20,8 @@
 
 ```go
 import (
-    "github.com/small-ek/gopay/alipay"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/alipay"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 // 初始化支付宝客户端
@@ -49,6 +49,9 @@ SetReturnUrl("https://www.fmm.ink").            // 设置返回URL
     SetNotifyUrl("https://www.fmm.ink").        // 设置异步通知URL
     SetAppAuthToken()                           // 设置第三方应用授权
 
+// 设置biz_content加密KEY，设置此参数默认开启加密
+client.SetAESKey("1234567890123456")
+
 // 自动同步验签（只支持证书模式）
 // 传入 alipayPublicCert.crt 内容
 client.AutoVerifySign([]byte("alipayPublicCert.crt bytes"))
@@ -73,7 +76,7 @@ err := client.SetCertSnByContent("appPublicCert.crt bytes", "alipayRootCert byte
 
 ```go
 import (
-    "github.com/small-ek/gopay"
+    "github.com/go-pay/gopay"
 )
 
 // 初始化 BodyMap
@@ -113,7 +116,7 @@ if err != nil {
 
 ```go
 import (
-    "github.com/small-ek/gopay/alipay"
+    "github.com/go-pay/gopay/alipay"
 )
 
 aliRsp, err := client.TradePay(bm)
@@ -140,7 +143,7 @@ ok, err := alipay.VerifySyncSignWithCert(aliPayPublicKeyCert, aliRsp.SignData, a
 
 ```go
 import (
-    "github.com/small-ek/gopay/alipay"
+    "github.com/go-pay/gopay/alipay"
 )
 
 // 解析异步通知的参数
@@ -188,8 +191,8 @@ return c.String(http.StatusOK, "success")
 
 ```go
 import (
-    "github.com/small-ek/gopay/alipay"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/alipay"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 // 换取授权访问令牌（默认使用utf-8，RSA2）

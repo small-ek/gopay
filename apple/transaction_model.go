@@ -3,7 +3,7 @@ package apple
 import (
 	"fmt"
 
-	"github.com/small-ek/gopay/pkg/jwt"
+	"github.com/go-pay/gopay/pkg/jwt"
 )
 
 type SignedTransaction string
@@ -38,6 +38,7 @@ type TransactionsItem struct {
 	SignedDate                  int64  `json:"signedDate"`
 	OfferType                   int    `json:"offerType"`
 	Environment                 string `json:"environment"`
+	AppAccountToken             string `json:"appAccountToken"`
 }
 
 func (s *SignedTransaction) DecodeSignedTransaction() (ti *TransactionsItem, err error) {

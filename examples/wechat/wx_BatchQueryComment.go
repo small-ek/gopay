@@ -1,10 +1,10 @@
 package wechat
 
 import (
-	"github.com/small-ek/gopay"
-	"github.com/small-ek/gopay/pkg/util"
-	"github.com/small-ek/gopay/pkg/xlog"
-	"github.com/small-ek/gopay/wechat"
+	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/pkg/util"
+	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/go-pay/gopay/wechat"
 )
 
 func BatchQueryComment() {

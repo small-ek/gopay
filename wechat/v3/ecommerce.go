@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/small-ek/gopay"
+	"github.com/go-pay/gopay"
 )
 
 // 二级商户进件API

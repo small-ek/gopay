@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/small-ek/gopay"
+	"github.com/go-pay/gopay"
 )
 
 // rootPEM is from `openssl x509 -inform der -in AppleRootCA-G3.cer -out apple_root.pem`

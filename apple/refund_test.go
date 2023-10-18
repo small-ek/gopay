@@ -3,7 +3,7 @@ package apple
 import (
 	"testing"
 
-	"github.com/small-ek/gopay/pkg/xlog"
+	"github.com/go-pay/gopay/pkg/xlog"
 )
 
 func TestGetRefundHistory(t *testing.T) {

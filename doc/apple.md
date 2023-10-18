@@ -8,8 +8,8 @@
 
 ```go
 import (
-    "github.com/small-ek/gopay/pkg/xlog"
-    "github.com/small-ek/gopay/apple"
+    "github.com/go-pay/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/apple"
 )
 
 // 初始化通联客户端
@@ -40,8 +40,8 @@ if err != nil {
 
 ```go
 import (
-    "github.com/small-ek/gopay/apple"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/apple"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 pwd := ""
@@ -71,8 +71,8 @@ if rsp.Receipt != nil {
 
 ```go
 import (
-    "github.com/small-ek/gopay/apple"
-    "github.com/small-ek/gopay/pkg/xlog"
+    "github.com/go-pay/gopay/apple"
+    "github.com/go-pay/gopay/pkg/xlog"
 )
 
 // decode signedPayload

@@ -6,7 +6,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/small-ek/gopay/pkg/xlog"
+	"github.com/go-pay/gopay/pkg/xlog"
 )
 
 func TestBodyMap_CheckParamsNull(t *testing.T) {

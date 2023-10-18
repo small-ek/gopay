@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/small-ek/gopay/alipay"
-	"github.com/small-ek/gopay/pkg/xlog"
-	"github.com/small-ek/gopay/pkg/xrsa"
+	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/go-pay/gopay/pkg/xrsa"
 )
 
 var ctx = context.Background()

@@ -6,7 +6,7 @@ import (
 	"crypto/rsa"
 	"fmt"
 
-	"github.com/small-ek/gopay"
+	"github.com/go-pay/gopay"
 )
 
 // Implements the RSA family of signing methods signing methods

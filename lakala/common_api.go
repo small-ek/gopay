@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/small-ek/gopay"
+	"github.com/go-pay/gopay"
 )
 
 // 获取当前汇率

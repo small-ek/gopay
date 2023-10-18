@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/small-ek/gopay"
-	"github.com/small-ek/gopay/pkg/util"
-	"github.com/small-ek/gopay/pkg/xlog"
-	"github.com/small-ek/gopay/pkg/xpem"
+	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/pkg/util"
+	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/go-pay/gopay/pkg/xpem"
 )
 
 // Deprecated
@@ -254,9 +254,13 @@ func (c *ClientV3) rsaSign(str string) (string, error) {
 	if c.privateKey == nil {
 		return "", errors.New("privateKey can't be nil")
 	}
-	h := sha256.New()
-	h.Write([]byte(str))
-	result, err := rsa.SignPKCS1v15(rand.Reader, c.privateKey, crypto.SHA256, h.Sum(nil))
+	c.rwMu.Lock()
+	defer func() {
+		c.sha256Hash.Reset()
+		c.rwMu.Unlock()
+	}()
+	c.sha256Hash.Write([]byte(str))
+	result, err := rsa.SignPKCS1v15(rand.Reader, c.privateKey, crypto.SHA256, c.sha256Hash.Sum(nil))
 	if err != nil {
 		return util.NULL, fmt.Errorf("[%w]: %+v", gopay.SignatureErr, err)
 	}
@@ -288,9 +292,13 @@ func (c *ClientV3) verifySyncSign(si *SignInfo) (err error) {
 	}
 	str := si.HeaderTimestamp + "\n" + si.HeaderNonce + "\n" + si.SignBody + "\n"
 	signBytes, _ := base64.StdEncoding.DecodeString(si.HeaderSignature)
-	h := sha256.New()
-	h.Write([]byte(str))
-	if err = rsa.VerifyPKCS1v15(wxPublicKey, crypto.SHA256, h.Sum(nil), signBytes); err != nil {
+	c.rwMu.Lock()
+	defer func() {
+		c.sha256Hash.Reset()
+		c.rwMu.Unlock()
+	}()
+	c.sha256Hash.Write([]byte(str))
+	if err = rsa.VerifyPKCS1v15(wxPublicKey, crypto.SHA256, c.sha256Hash.Sum(nil), signBytes); err != nil {
 		return fmt.Errorf("[%w]: %v", gopay.VerifySignatureErr, err)
 	}
 	return nil

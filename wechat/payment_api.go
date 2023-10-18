@@ -19,10 +19,10 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/small-ek/gopay"
-	xaes "github.com/small-ek/gopay/pkg/aes"
-	"github.com/small-ek/gopay/pkg/util"
-	"github.com/small-ek/gopay/pkg/xhttp"
+	"github.com/go-pay/gopay"
+	xaes "github.com/go-pay/gopay/pkg/aes"
+	"github.com/go-pay/gopay/pkg/util"
+	"github.com/go-pay/gopay/pkg/xhttp"
 )
 
 // ParseNotifyToBodyMap 解析微信支付异步通知的结果到BodyMap（推荐）
@@ -162,7 +162,7 @@ func GetOpenIdByAuthCode(ctx context.Context, appId, mchId, apiKey, authCode, no
 	bm.Set("sign", GetReleaseSign(apiKey, SignType_MD5, bm))
 
 	openIdRsp = new(OpenIdByAuthCodeRsp)
-	_, err = xhttp.NewClient().Type(xhttp.TypeXML).Post(url).SendString(GenerateXml(bm)).EndStruct(ctx, openIdRsp)
+	_, err = xhttp.NewClient().Req(xhttp.TypeXML).Post(url).SendString(GenerateXml(bm)).EndStruct(ctx, openIdRsp)
 	if err != nil {
 		return nil, err
 	}

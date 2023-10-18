@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/small-ek/gopay"
-	"github.com/small-ek/gopay/alipay/cert"
-	"github.com/small-ek/gopay/pkg/util"
-	"github.com/small-ek/gopay/pkg/xlog"
+	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/alipay/cert"
+	"github.com/go-pay/gopay/pkg/util"
+	"github.com/go-pay/gopay/pkg/xlog"
 )
 
 var (
@@ -41,6 +41,9 @@ func TestMain(m *testing.M) {
 		// SetAppAuthToken("")
 		SetReturnUrl("https://www.fmm.ink").
 		SetNotifyUrl("https://www.fmm.ink")
+
+	// 设置biz_content加密KEY，设置此参数默认开启加密（目前未测试成功）
+	//client.SetAESKey("KvKUTqSVZX2fUgmxnFyMaQ==")
 
 	// 自动同步验签（只支持证书模式）
 	// 传入 支付宝公钥证书 alipayPublicCert.crt 内容

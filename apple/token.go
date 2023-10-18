@@ -3,7 +3,7 @@ package apple
 import (
 	"time"
 
-	"github.com/small-ek/gopay/pkg/jwt"
+	"github.com/go-pay/gopay/pkg/jwt"
 )
 
 type CustomClaims struct {
