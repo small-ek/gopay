@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
+	"github.com/small-ek/gopay"
 )
 
 // GetTransactionHistory Get Transaction History

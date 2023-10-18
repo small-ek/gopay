@@ -5,7 +5,7 @@ import (
 	"crypto/cipher"
 	"fmt"
 
-	"github.com/go-pay/gopay/pkg/util"
+	"github.com/small-ek/gopay/pkg/util"
 )
 
 // AES-GCM 加密数据

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/go-pay/gopay"
+	"github.com/small-ek/gopay"
 )
 
 // getRsaSign 获取签名字符串

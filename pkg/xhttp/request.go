@@ -14,7 +14,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/go-pay/gopay/pkg/util"
+	"github.com/small-ek/gopay/pkg/util"
 )
 
 type Request struct {

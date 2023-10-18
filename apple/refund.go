@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/go-pay/gopay"
+	"github.com/small-ek/gopay"
 	"net/http"
 )
 

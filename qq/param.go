@@ -14,9 +14,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/small-ek/gopay"
+	"github.com/small-ek/gopay/pkg/util"
+	"github.com/small-ek/gopay/pkg/xlog"
 	"golang.org/x/crypto/pkcs12"
 )
 

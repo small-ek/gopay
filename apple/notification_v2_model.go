@@ -3,7 +3,7 @@ package apple
 import (
 	"fmt"
 
-	"github.com/go-pay/gopay/pkg/jwt"
+	"github.com/small-ek/gopay/pkg/jwt"
 )
 
 const (
@@ -49,11 +49,11 @@ type NotificationV2Req struct {
 // https://developer.apple.com/documentation/appstoreservernotifications/responsebodyv2decodedpayload
 type NotificationV2Payload struct {
 	jwt.StandardClaims
-	NotificationType    string `json:"notificationType"`
-	Subtype             string `json:"subtype"`
-	NotificationUUID    string `json:"notificationUUID"`
-	Version             string `json:"version"`
-	Data                *Data  `json:"data"`
+	NotificationType string `json:"notificationType"`
+	Subtype          string `json:"subtype"`
+	NotificationUUID string `json:"notificationUUID"`
+	Version          string `json:"version"`
+	Data             *Data  `json:"data"`
 }
 
 func (d *NotificationV2Payload) DecodeRenewalInfo() (ri *RenewalInfo, err error) {
